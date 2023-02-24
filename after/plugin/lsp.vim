@@ -1,14 +1,25 @@
+let g:lsp_log_verbose = 1
+let g:lsp_log_file = expand("~/vim-lsp.log")
+
 if executable('gopls')
 	autocmd User lsp_setup call lsp#register_server({
 				\ 'name': 'go-lang',
 				\ 'cmd': {server_info->['gopls']},
-				\ 'whitelist': ['go'],
+				\ 'allowlist': ['go'],
+				\ })
+endif
+
+if executable('typescript-language-server')
+	autocmd User lsp_setup call lsp#register_server({
+				\ 'name': 'typescript',
+				\ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server', '--stdio']},
+				\ 'allowlist': ['javascript', 'typescript'],
 				\ })
 endif
 
 function! s:on_lsp_buffer_enabled() abort
 	setlocal omnifunc=lsp#complete
-	"setlocal signcolumn=yes
+	setlocal signcolumn=no
 	if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
 	nmap <buffer> gd <plug>(lsp-definition)
 	nmap <buffer> gs <plug>(lsp-document-symbol-search)
