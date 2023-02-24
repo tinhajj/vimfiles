@@ -8,11 +8,13 @@ set relativenumber
 set ignorecase
 set hidden
 set backspace=indent,eol,start
-set noeb vb t_vb=
 
 set backupdir=~/vimdata/backup//
 set directory=~/vimdata/swap//
 set undodir=~/vimdata/undo//
+
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
 
 set background=dark
 colorscheme 256_noir
