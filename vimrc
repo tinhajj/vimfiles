@@ -22,6 +22,8 @@ set number
 set relativenumber
 set hidden
 
+hi clear SignColumn " transparent signcolumn bg
+
 set directory=$HOME/swapfiles
 
-source $HOME/vimfiles/lsp.vim
+runtime lsp.vim
