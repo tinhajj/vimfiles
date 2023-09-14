@@ -1,26 +1,27 @@
 call plug#begin()
-	Plug 'https://github.com/tpope/vim-unimpaired.git'
-	Plug 'https://github.com/rafi/awesome-vim-colorschemes.git'
-	Plug 'https://github.com/prabirshrestha/vim-lsp.git'
+	Plug 'CreaturePhil/vim-handmade-hero'
+	Plug 'tpope/vim-sensible'
+	Plug 'tpope/vim-unimpaired'
+	Plug 'mtth/scratch.vim'
+	Plug 'prabirshrestha/vim-lsp'
+	Plug 'mattn/vim-lsp-settings'
+	Plug 'kien/ctrlp.vim'
 call plug#end()
 
-set relativenumber
-set ignorecase
-set hidden
-set backspace=indent,eol,start
-
-set backupdir=~/vimdata/backup//
-set directory=~/vimdata/swap//
-set undodir=~/vimdata/undo//
-
+" GVIM
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
+set guioptions-=m  " remove menu bar
+set guioptions-=T  " remove toolbar
+set guioptions-=r  " remove right-hand scroll bar
+set guioptions-=L  " remove left-hand scroll bar
 
-set background=dark
-colorscheme 256_noir
+set guifont=Inconsolata:h16
+colorscheme handmade-hero
+set number
+set relativenumber
+set hidden
 
-if has("gui_running")
-	if has("win32")
-		runtime gvim.win
-	endif
-endif
+set directory=$HOME/swapfiles
+
+source $HOME/vimfiles/lsp.vim

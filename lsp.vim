@@ -1,25 +1,9 @@
-let g:lsp_log_verbose = 1
-let g:lsp_log_file = expand("~/vim-lsp.log")
-
-if executable('gopls')
-	autocmd User lsp_setup call lsp#register_server({
-				\ 'name': 'go-lang',
-				\ 'cmd': {server_info->['gopls']},
-				\ 'allowlist': ['go'],
-				\ })
-endif
-
-if executable('typescript-language-server')
-	autocmd User lsp_setup call lsp#register_server({
-				\ 'name': 'typescript',
-				\ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server', '--stdio']},
-				\ 'allowlist': ['javascript', 'typescript'],
-				\ })
-endif
+" let g:lsp_diagnostics_enabled = 0
+let g:lsp_document_highlight_enabled = 0
 
 function! s:on_lsp_buffer_enabled() abort
 	setlocal omnifunc=lsp#complete
-	setlocal signcolumn=no
+	setlocal signcolumn=yes
 	if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
 	nmap <buffer> gd <plug>(lsp-definition)
 	nmap <buffer> gs <plug>(lsp-document-symbol-search)
@@ -28,8 +12,8 @@ function! s:on_lsp_buffer_enabled() abort
 	nmap <buffer> gi <plug>(lsp-implementation)
 	nmap <buffer> gt <plug>(lsp-type-definition)
 	nmap <buffer> <leader>rn <plug>(lsp-rename)
-	nmap <buffer> [g <plug>(lsp-previous-diagnostic)
-	nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+	nmap <buffer> [d <plug>(lsp-previous-diagnostic)
+	nmap <buffer> ]d <plug>(lsp-next-diagnostic)
 	nmap <buffer> K <plug>(lsp-hover)
 	nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
 	nnoremap <buffer> <expr><c-d> lsp#scroll(-4)

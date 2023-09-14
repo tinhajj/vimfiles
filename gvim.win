@@ -1,3 +1,0 @@
-set guifont=Inconsolata:h14
-set guioptions='!c'
-set renderoptions=type:directx
